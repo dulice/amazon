@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const path = require('path');
 
 const productRoute = require('./routes/productsRoute');
 const userRoute = require('./routes/UserRoute');
@@ -23,6 +24,12 @@ mongoose.connect( process.env.DB_CONNECT)
     .catch ((err) => {
         console.log(err.message);
     });
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, '/client/build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 app.use('/api/products', productRoute );
 app.use('/api/users', userRoute);
