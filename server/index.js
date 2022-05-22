@@ -16,9 +16,10 @@ app.use(cors());
 
 dotenv.config();
 
+const port = process.env.PORT || 5000;
 mongoose.connect( process.env.DB_CONNECT)
     .then(() => {
-        app.listen(process.env.PORT);
+        app.listen(port);
         console.log('connect to db');
     })
     .catch ((err) => {
