@@ -75,6 +75,7 @@ const Reviews = () => {
   return (
     <div className="my-20">
         <p className="text-3xl mb-5">Reviews</p>
+        {loading && <div>Loading...</div>}
         {reviews.length < 1 ? <p className='text-red-600'>There is no reviews yet</p>
         : reviews.map(rev => (
           <div key={rev._id} className="mb-3">

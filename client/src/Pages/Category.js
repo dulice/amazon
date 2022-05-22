@@ -1,10 +1,9 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { Fragment, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { BsCaretDownFill } from 'react-icons/bs'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

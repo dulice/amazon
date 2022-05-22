@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 import { Store } from '../Context/Store';
 import getError from '../components/getError';
@@ -7,9 +7,7 @@ import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 
 const Signup = () => {
-    const { search } = useLocation();
     const { state, dispatch: ctxDispatch } = useContext(Store);
-    const { userInfo } = state;
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");

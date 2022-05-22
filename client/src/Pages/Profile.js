@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useReducer, useState } from 'react'
+import React, { useContext, useReducer, useState } from 'react'
 import { Helmet } from 'react-helmet-async';
 import { toast } from 'react-toastify';
 import getError from '../components/getError';
@@ -69,8 +69,9 @@ const Profile = () => {
           <title>Profile Setting</title>
         </Helmet>
         <h1 className="font-bold text-3xl text-violet-800">Profile Setting</h1>
+        { loading ? <div>Loading...</div>
+        :
         <form onSubmit={handleSubmit}>
-
           <div className="grid grid-cols-6 gap-4">
 
             <div className="col-span-6">
@@ -116,6 +117,7 @@ const Profile = () => {
           </div>
 
         </form>
+        }
       </div>
     </div>
   )

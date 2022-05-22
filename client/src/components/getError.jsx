@@ -1,5 +1,3 @@
-import React from 'react'
-
 const getError = (error) => {
   return (
     error.response && error.response.data 

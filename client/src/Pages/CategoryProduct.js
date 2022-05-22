@@ -68,7 +68,7 @@ const ratings = [
 
 const CategoryProduct = () => {
     const navigate = useNavigate();
-    const [{loading, error, products, countProducts, pages}, dispatch] = useReducer(Reducer, {
+    const [{loading, products}, dispatch] = useReducer(Reducer, {
         loading: true,
         error: ''
     })

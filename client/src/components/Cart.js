@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Cart = () => {
   const navigate = useNavigate();
     const {state, dispatch: ctxDispatch} = useContext(Store);
-    const { cart, userInfo } = state;
+    const { cart } = state;
 
     const handleUpdate = (product, quantity) => {
       ctxDispatch({

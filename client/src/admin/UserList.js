@@ -23,7 +23,7 @@ const Reducer = (state, action) => {
 const UserList = () => {
     const { state } = useContext(Store);
     const { userInfo } = state;
-    const [{loading, error, users}, dispatch] = useReducer(Reducer, {
+    const [{loading, users}, dispatch] = useReducer(Reducer, {
         loading: true,
         error: '',
         users: []

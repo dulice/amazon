@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useReducer } from 'react'
+import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Store } from '../Context/Store'
@@ -55,7 +56,7 @@ const PlaceOrder = () => {
             navigate(`/orders/${data._id}`);
         } catch (err) {
             dispatch({type: "FETCH_FAIL", payload: getError(err)});
-            toast.error(err.message);
+            toast.error(error);
         }
     }
 
@@ -68,7 +69,12 @@ const PlaceOrder = () => {
   return (
       <div className="max-w-7xl mx-auth p-2 sm:p-6 lg:p-8">
           <Step step1 step2 step3 step4 />
+          <Helmet>
+              <title>PreviewOrder</title>
+          </Helmet>
           <p className="font-bold text-3xl ml-5">Preview Order</p>
+          {loading? <div>Loading...</div>
+          :
           <div className="grid grid-cols-12 gap-6">
               <div className="col-span-12 sm:col-span-8">
                   <div className="">
@@ -134,6 +140,7 @@ const PlaceOrder = () => {
                     <button onClick={handlePlaceOrder} className="border bg-violet-700 text-white rounded-md mt-3 px-3 py-2 w-full hover:bg-violet-800">Place Order</button>
                 </div>
             </div>
+            }
         </div>
   )
 }
