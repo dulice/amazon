@@ -18,7 +18,7 @@ dotenv.config();
 
 mongoose.connect( process.env.DB_CONNECT)
     .then(() => {
-        app.listen(5000);
+        app.listen(process.env.PORT);
         console.log('connect to db');
     })
     .catch ((err) => {
