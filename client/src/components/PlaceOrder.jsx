@@ -36,7 +36,7 @@ const PlaceOrder = () => {
     const handlePlaceOrder = async () => {
         try {
             dispatch({type: "FETCH_REQUEST"});
-            const {data} = await axios.post('http://localhost:5000/api/orders', 
+            const {data} = await axios.post('/api/orders', 
             {
                 orderItems: cart.cartItems,
                 shippingAddress: cart.shippingAddress,

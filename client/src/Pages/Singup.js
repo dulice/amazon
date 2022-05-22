@@ -17,7 +17,7 @@ const Signup = () => {
         e.preventDefault();
         if(password !== repeatPassword) return toast.error("Password do not match");
         try {
-            const { data } = await axios.post('http://localhost:5000/api/users/signup', {
+            const { data } = await axios.post('/api/users/signup', {
                 name,
                 email,
                 password

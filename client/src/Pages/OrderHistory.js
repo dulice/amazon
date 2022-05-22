@@ -35,7 +35,7 @@ const OrderHistory = () => {
         const fetchData = async () => {
             try {
                 dispatch({type: "FETCH_REQUEST"});
-                const { data } = await axios.get('http://localhost:5000/api/orders/history',{
+                const { data } = await axios.get('/api/orders/history',{
                     headers: {
                         authorization: `Bearer ${userInfo.token}`
                     }

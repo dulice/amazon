@@ -63,7 +63,7 @@ const FinishOrder = () => {
         const fetchData = async () => {
             dispatch({type: "FETCH_REQUEST"})
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/orders/${orderId}`, {
+                const { data } = await axios.get(`/api/orders/${orderId}`, {
                     headers: {
                         authorization: `Bearer ${userInfo.token}`
                     }
@@ -81,7 +81,7 @@ const FinishOrder = () => {
     const handleDeliver = async () => {
         dispatch({type: "DELIVER_REQUEST"});
         try {
-            await axios.put(`http://localhost:5000/api/orders/${orderId}/delivered`, {}, {
+            await axios.put(`/api/orders/${orderId}/delivered`, {}, {
                 headers: {
                     authorization: `Bearer ${userInfo.token}`
                 }

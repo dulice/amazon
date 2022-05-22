@@ -15,7 +15,7 @@ const Category = () => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get('http://localhost:5000/api/products/category');
+            const { data } = await axios.get('/api/products/category');
             setCategories(data);
             setLoading(false);
         }

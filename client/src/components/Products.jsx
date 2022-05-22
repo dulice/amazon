@@ -31,7 +31,7 @@ const Products = () => {
         const fetchProducts = async () => {
             dispatch({type: "FETCH_REQUEST"});
             try {
-                const { data } = await axios.get('http://localhost:5000/api/products');
+                const { data } = await axios.get('/api/products');
                 dispatch({type: "FETCH_SUCCESS", payload: data});
             } catch (err) {
                 dispatch({type: "FETCH_FAIL", payload: getError(err)});

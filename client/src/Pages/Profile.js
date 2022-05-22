@@ -39,7 +39,7 @@ const Profile = () => {
         if(password !== confirmPasswrod) return toast.error("Password do not match!");
             dispatch({type: "FETCH_REQUEST"});
             try {
-                const { data } = await axios.put("http://localhost:5000/api/users/profile", {
+                const { data } = await axios.put("/api/users/profile", {
                     name,
                     email,
                     password

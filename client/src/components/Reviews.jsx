@@ -25,8 +25,8 @@ const Reducer = (state, action) => {
 
 const Reviews = () => {
   const { id } = useParams();
-  console.log(id);
-  const [{loading, error, reviews}, dispatch] = useReducer(Reducer, {
+  // console.log(id);
+  const [{loading, reviews}, dispatch] = useReducer(Reducer, {
     loading: true,
     error: '',
     reviews: []
@@ -41,12 +41,12 @@ const Reviews = () => {
     const fetchReview = async () => {
       dispatch({type: "FETCH_REQUEST"});
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const { data } = await axios.get(`/api/products/${id}`);
         // console.log(data.reviews);
         dispatch({type: "FETCH_SUCCESS", payload: data.reviews});
       } catch (err) {
         dispatch({type: "FETCH_FAIL", payload: getError(err)});
-        toast.error(error);
+        toast.error("You already give reivew!");
       }
     }
     fetchReview();
@@ -55,7 +55,7 @@ const Reviews = () => {
   const handelSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/api/products/${id}/review`, {
+      await axios.post(`/api/products/${id}/review`, {
         rating,
         comment
       }, {
@@ -79,7 +79,7 @@ const Reviews = () => {
         {reviews.length < 1 ? <p className='text-red-600'>There is no reviews yet</p>
         : reviews.map(rev => (
           <div key={rev._id} className="mb-3">
-            <strong>{rev.name}</strong><span className='text-gray-600'>{'   '}( {moment(rev.createdAt).toNow()} )</span>
+            <strong>{rev.name}</strong><span className='text-gray-600'>{'   '}( {moment(rev.createdAt).fromNow()} )</span>
             <Rating rating={rev.rating} className="text-red-600"/>
             <p>{rev.comment}</p>
           </div>

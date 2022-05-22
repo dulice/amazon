@@ -40,7 +40,7 @@ const SingleProduct = () => {
         const fetchProduct = async () => {
             dispatch({type: "FETCH_REQUEST"})
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/products/${id}`);
+                const { data } = await axios.get(`/api/products/${id}`);
                 dispatch({type: "FETCH_SUCCESS", payload: data});
             } catch (err) {
                 dispatch({type: "FECTH_FAIL", payload: getError(err)});

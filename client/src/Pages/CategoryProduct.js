@@ -85,7 +85,7 @@ const CategoryProduct = () => {
         const fetchData = async () => {
             dispatch({type: "FETCH_REQUEST"});
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/products/search?category=${category}&price=${price}&rating=${rating}&page=${page}&order=${order}&query=${query}`);
+                const { data } = await axios.get(`/api/products/search?category=${category}&price=${price}&rating=${rating}&page=${page}&order=${order}&query=${query}`);
                 console.log(data.countProducts);
                 dispatch({type: "FETCH_SUCCESS", payload: data});
             } catch (err) {
