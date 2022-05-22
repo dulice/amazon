@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useContext, useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import getError from '../components/getError'
@@ -41,7 +41,7 @@ const OrderHistory = () => {
                     }
                 })
                 dispatch({type: "FETCH_SUCCESS", payload: data});
-                console.log(data);
+                // console.log(data);
             } catch (err) {
                 dispatch({type: "FETCH_FAIL", payload: getError(err)});
             }

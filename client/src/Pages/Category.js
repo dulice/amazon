@@ -13,10 +13,12 @@ function classNames(...classes) {
 const Category = () => {
 
     const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await axios.get('http://localhost:5000/api/products/category')
+            const { data } = await axios.get('http://localhost:5000/api/products/category');
             setCategories(data);
+            setLoading(false);
         }
         fetchData();
     },[setCategories, categories]);
@@ -41,7 +43,9 @@ const Category = () => {
             leaveTo="transform opacity-0 scale-95"
             >
             <Menu.Items className="origin-top-left absolute left-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                {categories.map(category => (
+                {loading ? <div>Loading...</div>
+                :
+                categories?.map(category => (
                     <Menu.Item key={category}>
                     {({ active }) => (
                         <Link
@@ -52,7 +56,8 @@ const Category = () => {
                         </Link>
                     )}
                     </Menu.Item>
-                ))}
+                ))
+                }
             </Menu.Items>
             </Transition>
         </Menu>

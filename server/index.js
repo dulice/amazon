@@ -25,13 +25,16 @@ mongoose.connect( process.env.DB_CONNECT)
         console.log(err.message);
     });
 
-const __dirname = path.resolve();
+app.use('/api/products', productRoute );
+app.use('/api/users', userRoute);
+app.use('/api/orders', orderRoute);
+app.use('/api/upload', uploadRoute);
+
 app.use(express.static(path.join(__dirname, '/client/build')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-app.use('/api/products', productRoute );
-app.use('/api/users', userRoute);
-app.use('/api/orders', orderRoute);
-app.use('/api/upload', uploadRoute);
+app.use((err, req, res, next) => {
+    res.status(500).json({message: err.message});
+})

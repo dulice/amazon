@@ -97,8 +97,12 @@ export default function Header() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <LinkR to='/cart' className='hover:bg-gray-700 text p-2 rounded-md text-sm font-medium text-white'>
                   <BsCart className="h-6 w-6" aria-hidden="true" />
-                  <span className="bg-red-500 rounded-sm p-1 text-white">{cartItems.reduce((sum, num) => sum + num.quantity, 0)}</span>
-                </LinkR>
+                  {
+                    cartItems?
+                    <span className="bg-red-500 rounded-sm p-1 text-white">{cartItems?.reduce((sum, num) => sum + num.quantity, 0)}</span>
+                    : <span className="bg-red-500 rounded-sm p-1 text-white">0</span>
+                  }
+                  </LinkR>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
