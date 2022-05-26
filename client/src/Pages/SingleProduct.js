@@ -50,20 +50,14 @@ const SingleProduct = () => {
         fetchProduct();
     },[dispatch, error, id]);
 
-    const handleAddToCart = async () => {
-        const newItem = cart.cartItems.find(item => item._id === product._id);
-        newItem.quantity = 1;
-        console.log(newItem);
-        const quantity = newItem ? newItem.quantity + 1 : newItem.quantity;
-        console.log(quantity);
-        ctxDispatch({
-          type: "ADD_TO_CART",
-          payload: {
-            ...product,
-            quantity
-          }
-        })
-    }
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const handleAddToCart = (item) => {
+      ctxDispatch({
+        type: 'ADD_TO_CART',
+        payload: { ...item, quantity },
+      });
+    };
 
   return (
     <div className="max-w-5xl mx-auto px-2 sm:px-6 lg:px-8 mt-5">
@@ -97,7 +91,7 @@ const SingleProduct = () => {
                       </>
                       :
                       <>
-                        <button onClick={handleAddToCart} className='border shadow-sm rounded-md bg-indigo-600 text-white hover:bg-indigo-700 py-1 px-4 mr-5'>Add To Cart</button>
+                        <button onClick={()=>handleAddToCart(product)} className='border shadow-sm rounded-md bg-indigo-600 text-white hover:bg-indigo-700 py-1 px-4 mr-5'>Add To Cart</button>
                         <button onClick={()=>navigate('/cart')} className=' border shadow-sm rounded-md bg-amber-500 text-white hover:bg-amber-600 py-1 px-4'>Buy Now</button>
                       </>
                       }
