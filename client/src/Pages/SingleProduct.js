@@ -48,7 +48,7 @@ const SingleProduct = () => {
             }
         }
         fetchProduct();
-    },[dispatch]);
+    },[dispatch, error, id]);
 
     const handleAddToCart = async () => {
         const newItem = cart.cartItems.find(item => item._id === product._id);
@@ -74,7 +74,7 @@ const SingleProduct = () => {
         :
             <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
-                    <img src={product.image} className="rounded-md" />
+                    <img src={product.image} alt="" className="rounded-md" />
                 </div>
                 <div className="col-span-1"></div>
                 <div className="col-span-6 sm:col-span-2 leading-8">

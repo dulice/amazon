@@ -66,14 +66,13 @@ const Dashboard = () => {
                     }
                 })
                 dispatch({type: "FETCH_SUCCESS", payload: data});
-                console.log(summary);
             } catch (err) {
                 dispatch({type: "FETCH_FAIL", payload: getError(err)});
                 toast.error(error);
             }
         }
         fetchData();
-    },[dispatch, userInfo]);
+    },[dispatch, userInfo, error]);
 
     const salesData = {
       labels: summary?.dailyOrders.map(x => x._id),

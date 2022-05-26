@@ -4,13 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build --prefix client",
-    "start": "amazon",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "npx nodemon server/index",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm run build"
+    "build": "cd server && npm install && cd ../client && npm install && npm run build",
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +17,5 @@
   "bugs": {
     "url": "https://github.com/dulice/amazon/issues"
   },
-  "homepage": "https://github.com/dulice/amazon#readme",
-  "devDependencies": {
-    "concurrently": "^7.2.0"
-  }
+  "homepage": "https://github.com/dulice/amazon#readme"
 }

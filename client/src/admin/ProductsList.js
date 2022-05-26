@@ -61,7 +61,7 @@ const ProductsList = () => {
         }
     }
     fetchProducts();
-  },[dispatch]);;
+  },[dispatch, error]);;
 
   const handleDelete = async (id) => {
     dispatch({type: "DELETE_REQUEST"});

@@ -39,7 +39,7 @@ const Products = () => {
             }
         }
         fetchProducts();
-    },[dispatch])
+    },[dispatch, error])
 
   return (
     <div id="product" className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'>

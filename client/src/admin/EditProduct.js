@@ -45,7 +45,6 @@ const EditProduct = () => {
   const [description, setDescription] = useState('');
   
   const [image, setImage] = useState('');
-  const [previewSource, setPreviewSource] = useState('');
 
   const [{loading, error}, dispatch ] = useReducer(Reducer, {
     loading: true,
@@ -69,7 +68,7 @@ const EditProduct = () => {
       }
     }
     fetchProduct();
-  },[setName, setSlug, setCategory, setBrand, setCountInStock, setPrice, setImage, setDescription]);
+  },[setName, setSlug, setCategory, setBrand, setCountInStock, setPrice, setImage, setDescription, productId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,48 +97,12 @@ const EditProduct = () => {
     }
   }
 
-  // const uploadFileHandler = async (e) => {
-  //   const file = e.target.files[0];
-  //   const bodyFormData = new FormData();
-  //   bodyFormData.append('file', file);
-  //   try {
-  //     dispatch({ type: 'UPLOAD_REQUEST' });
-  //     const { data } = await axios.post('http://localhost:5000/api/upload', bodyFormData, {
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data',
-  //         authorization: `Bearer ${userInfo.token}`,
-  //       },
-  //     });
-  //     console.log(data);
-  //     dispatch({ type: 'UPLOAD_SUCCESS' });
-
-  //     toast.success('Image uploaded successfully');
-  //     setImage(data.secure_url);
-  //   } catch (err) {
-  //     toast.error(getError(err));
-  //     dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
-  //   }
-  // };
-
   return (
     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
       <div className="m-3">
         <h1 className="font-bold text-3xl text-violet-800">Item</h1>
-        <div>
-          {previewSource && <img src={previewSource} alt="chosen" className="w-full rounded-md my-5"/>}
-        </div>
         <form onSubmit={handleSubmit}>
-
           <div className="grid grid-cols-6 gap-4">
-
-            {/* <div className="col-span-6 sm:col-span-6">
-              <label htmlFor="image" className='block text-grap-700 mt-3'>Image:</label>
-              <input 
-                onChange={uploadFileHandler}
-                type="file" className="p-2 rounded-md sm:text-sm w-full border border-violet-500 outline-violet-600" id="image" />
-                {uploadloading && <div>Loading...</div>}
-            </div> */}
-
             <div className="col-span-6 sm:col-span-6">
               <label htmlFor="image" className='block text-grap-700 mt-3'>Image:</label>
               <input 
@@ -213,11 +176,14 @@ const EditProduct = () => {
                 id="des" cols="30" rows="10" 
                 className='p-2 rounded-md sm:text-sm w-full border border-violet-500 outline-violet-600'></textarea>
             </div>
-
-            <button 
-              type='submit'
-              className='col-end-7 border shadow-sm rounded-md bg-indigo-600 text-white hover:bg-indigo-700 py-2 px-4'>Update</button>
-
+            { loading 
+            ? <button 
+            type='submit'
+            className='col-end-7 border shadow-sm rounded-md bg-indigo-600 text-white hover:bg-indigo-700 py-2 px-4 cursor-none'>Updating...</button>
+            : <button 
+            type='submit'
+            className='col-end-7 border shadow-sm rounded-md bg-indigo-600 text-white hover:bg-indigo-700 py-2 px-4'>Update</button>
+            }      
           </div>
 
         </form>

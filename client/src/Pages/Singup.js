@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 
 const Signup = () => {
-    const { state, dispatch: ctxDispatch } = useContext(Store);
+    const { dispatch: ctxDispatch } = useContext(Store);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");

@@ -31,9 +31,10 @@ app.use('/api/users', userRoute);
 app.use('/api/orders', orderRoute);
 app.use('/api/upload', uploadRoute);
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+const __variableOfChoice = path.resolve()
+app.use(express.static(path.join(__variableOfChoice, '/client/build')));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    res.sendFile(path.join(__variableOfChoice, '/client/build/index.html'));
 });
 
 app.use((err, req, res, next) => {

@@ -50,7 +50,7 @@ const Reviews = () => {
       }
     }
     fetchReview();
-  },[dispatch]);  
+  },[dispatch, id]);  
 
   const handelSubmit = async (e) => {
     e.preventDefault();

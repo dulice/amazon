@@ -76,7 +76,7 @@ const FinishOrder = () => {
             }
         }
         fetchData();
-    },[dispatch, userInfo]);
+    },[dispatch, userInfo, error, orderId]);
 
     const handleDeliver = async () => {
         dispatch({type: "DELIVER_REQUEST"});

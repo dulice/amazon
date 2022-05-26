@@ -39,7 +39,7 @@ const Signin = () => {
         if(userInfo) {
             navigate(redirect);
         }
-    },[navigate, redirect]);
+    },[navigate, redirect, userInfo]);
   return (
     <div className=" sm:max-w-4xl max-w-5xl mx-auto px-2 sm:px-8 lg:px-6 flex flex-col justify-center items-center" style={{height: "90vh"}}>
         <Helmet>
