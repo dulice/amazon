@@ -26,16 +26,19 @@ const UserList = () => {
     const [{loading, users}, dispatch] = useReducer(Reducer, {
         loading: true,
         error: '',
-        users: []
     });
 
     useEffect(() => {
         const fetchUsers = async () => {
             dispatch({type: "FETCH_REQUEST"});
             try {
-                const { data } = await axios.get('http://localhost:5000/api/users');
-                console.log(data);
+                const { data } = await axios.get('/api/users/allusers', {
+                  headers: {
+                    authorization: `Bearer ${userInfo.token}`
+                  }
+                });
                 dispatch({type: "FETCH_SUCCESS", payload: data});
+                console.log(data);
             } catch (err) {
                 dispatch({type: "FETCH_FAIL", payload: getError(err)});
                 toast.error("Users Not Found!");

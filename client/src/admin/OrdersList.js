@@ -34,7 +34,7 @@ const OrdersList = () => {
         const fetchUsers = async () => {
             dispatch({type: "FETCH_REQUEST"});
             try {
-                const { data } = await axios.get('http://localhost:5000/api/orders/admin', {
+                const { data } = await axios.get('/api/orders/admin', {
                     headers: {
                         authorization: `Bearer ${userInfo.token}`
                     }
@@ -50,7 +50,7 @@ const OrdersList = () => {
     },[userInfo, dispatch]);
   return (
      <div className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'>
-        <p className='font-bold text-3xl py-5'>Users List</p>
+        <p className='font-bold text-3xl py-5'>Orders List</p>
         {loading? <div>Loading...</div>
         :
         <table className="table-auto w-full border-collapse border text-left overflow-x-auto">

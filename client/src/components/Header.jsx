@@ -103,16 +103,25 @@ export default function Header() {
                     : <span className="bg-red-500 rounded-sm p-1 text-white">0</span>
                   }
                   </LinkR>
-
+                  
+                {!userInfo && 
+                  <Menu as="div" className="ml-3 relative">
+                    <div>
+                      <Menu.Button className="bg-gray-800 flex text-sm rounded-full hover:bg-gray-900 px-3 py-2">
+                        <span className="sr-only">Open user menu</span>                                       
+                        <Link to='/signin' className='text-white font-bold'>Sign in</Link>                                          
+                      </Menu.Button>
+                    </div>
+                  </Menu>
+                }
                 {/* Profile dropdown */}
+                {userInfo &&
                 <Menu as="div" className="ml-3 relative">
                   <div>
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full hover:bg-gray-900 px-3 py-2">
-                      <span className="sr-only">Open user menu</span>
-                      {userInfo ?
-                      <p className="font-bold text-white ">{userInfo.name} <BsCaretDownFill /></p>
-                      : <Link to='/signin' className='text-white font-bold'>Sign in</Link>
-                      }
+                      <span className="sr-only">Open user menu</span>                                       
+                      <p className="font-bold text-white ">{userInfo.name} <BsCaretDownFill /></p>                     
+                      
                     </Menu.Button>
                   </div>
                   <Transition
@@ -159,6 +168,7 @@ export default function Header() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+                } 
 
                 {userInfo && userInfo.isAdmin && 
                 <Menu as="div" className="ml-3 relative">
@@ -208,17 +218,6 @@ export default function Header() {
                           </Link>
                         )}
                       </Menu.Item>                    
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to='/admin/usersList'
-                            onClick={handleSignout}
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Users List
-                          </Link>
-                        )}
-                      </Menu.Item>
                     </Menu.Items>
                   </Transition>
                 </Menu>

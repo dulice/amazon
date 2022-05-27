@@ -54,7 +54,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/products/${productId}`);
+        const { data } = await axios.get(`/api/products/${productId}`);
         setName(data.name);
         setSlug(data.slug);
         setCategory(data.category);
@@ -74,7 +74,7 @@ const EditProduct = () => {
     e.preventDefault();
     dispatch({type: "FETCH_REQUEST"});
     try {
-      await axios.put(`http://localhost:5000/api/products/${productId}`, {
+      await axios.put(`/api/products/${productId}`, {
         name ,
         slug ,
         category,

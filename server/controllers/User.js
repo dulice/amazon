@@ -5,7 +5,7 @@ const expressAsyncHandler = require('express-async-handler');
 
 const getAllUsers = expressAsyncHandler (async (req, res) => {
     const user = await User.find();
-    res.status(200).send(user);
+    res.status(200).json(user);
 });
 
 const SignUp = expressAsyncHandler ( async (req, res) => {

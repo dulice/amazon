@@ -53,7 +53,7 @@ const ProductsList = () => {
     const fetchProducts = async () => {
         dispatch({type: "FETCH_REQUEST"});
         try {
-            const { data } = await axios.get('http://localhost:5000/api/products');
+            const { data } = await axios.get('/api/products');
             dispatch({type: "FETCH_SUCCESS", payload: data});
         } catch (err) {
             dispatch({type: "FETCH_FAIL", payload: getError(err)});
@@ -66,7 +66,7 @@ const ProductsList = () => {
   const handleDelete = async (id) => {
     dispatch({type: "DELETE_REQUEST"});
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`, {
+      await axios.delete(`/api/products/${id}`, {
         headers: {
           authorization: `Bearer ${userInfo.token}`
         }
@@ -86,7 +86,7 @@ const ProductsList = () => {
     if(window.confirm("Are you sure you want to crate new product?")) {
       dispatch({type: "CREATE_REQUEST"});
       try {
-        const { data } = await axios.post('http://localhost:5000/api/products');
+        const { data } = await axios.post('/api/products');
         dispatch({type: "CREATE_SUCCESS", payload: data});
         navigate(`/admin/productsList/${data._id}`);
       } catch (err) {

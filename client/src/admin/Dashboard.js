@@ -60,7 +60,7 @@ const Dashboard = () => {
         const fetchData = async () => {
             dispatch({type: "FETCH_REQUEST"});
             try {
-                const { data } = await axios.get('http://localhost:5000/api/orders/summary', {
+                const { data } = await axios.get('/api/orders/summary', {
                     headers: {
                         authorization: `Bearer ${userInfo.token}`
                     }
