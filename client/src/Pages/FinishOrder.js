@@ -47,7 +47,7 @@ const FinishOrder = () => {
     const makePayment = async(token) => {
         const body = {token};
         try {
-            await axios.post(`http://localhost:5000/api/orders/${orderId}/payment`, body, {
+            await axios.post(`/api/orders/${orderId}/payment`, body, {
                 headers: {
                     authorization: `Bearer ${userInfo.token}`
                 }
@@ -56,8 +56,9 @@ const FinishOrder = () => {
         } catch(err){
             console.log(err.message);
         }
-        localStorage.removeItem('cartItems')
-        navigate('/thankyou');
+        localStorage.removeItem('cartItems');
+        window.location.replace('/thankyou');
+//         navigate('/thankyou');
     }
 
     useEffect(() => {
