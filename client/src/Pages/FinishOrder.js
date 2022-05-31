@@ -56,6 +56,7 @@ const FinishOrder = () => {
         } catch(err){
             console.log(err.message);
         }
+        localStorage.removeItem('cartItems')
         navigate('/thankyou');
     }
 

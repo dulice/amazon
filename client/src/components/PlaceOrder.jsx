@@ -26,7 +26,7 @@ const Reducer = (state, action) => {
 const PlaceOrder = () => {
     const navigate = useNavigate();
     const [{loading, error}, dispatch] = useReducer(Reducer, {
-        loading: true,
+        loading: false,
         error: ''
     })
     const { state } = useContext(Store);
@@ -34,9 +34,9 @@ const PlaceOrder = () => {
     // console.log(cart.cartItems);
 
     const handlePlaceOrder = async () => {
+        dispatch({type: "FETCH_REQUEST"});
         try {
-            dispatch({type: "FETCH_REQUEST"});
-            const {data} = await axios.post('/api/orders', 
+            const {data} = await axios.post('/api/orders/placeorder', 
             {
                 orderItems: cart.cartItems,
                 shippingAddress: cart.shippingAddress,
@@ -52,6 +52,7 @@ const PlaceOrder = () => {
                 }
             });
             dispatch({type: "FETCH_SUCCESS"});
+            console.log(data);
             // localStorage.removeItem('cartItems');
             navigate(`/orders/${data._id}`);
         } catch (err) {
@@ -72,9 +73,7 @@ const PlaceOrder = () => {
           <Helmet>
               <title>PreviewOrder</title>
           </Helmet>
-          <p className="font-bold text-3xl ml-5">Preview Order</p>
-          {loading? <div>Loading...</div>
-          :
+          <p className="font-bold text-3xl ml-5">Preview Order</p>          
           <div className="grid grid-cols-12 gap-6">
               <div className="col-span-12 sm:col-span-8">
                   <div className="">
@@ -137,10 +136,13 @@ const PlaceOrder = () => {
                         <strong>Total Price: </strong>
                         <strong className='text-indigo-600 text-3xl'>$ {cart.totalPrice}</strong>
                     </div>
+                    {loading? <button onClick={handlePlaceOrder} className="border bg-violet-600 text-white rounded-md mt-3 px-3 py-2 w-full cursor-not-allowed">Place Order...</button>
+                    :
                     <button onClick={handlePlaceOrder} className="border bg-violet-700 text-white rounded-md mt-3 px-3 py-2 w-full hover:bg-violet-800">Place Order</button>
+                    }
                 </div>
             </div>
-            }
+            
         </div>
   )
 }

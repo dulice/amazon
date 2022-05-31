@@ -7,7 +7,7 @@ const { createOrder, orderSummary, singleUserOrderHistory, getSingleOrder, getAl
 
 const router = require('express').Router();
 
-router.post('/',isAuth, createOrder);
+router.post('/placeorder',isAuth, createOrder);
 router.get('/admin', isAuth, isAdmin, getAllOrders);
 router.get('/history', isAuth, singleUserOrderHistory);
 router.get('/summary', isAuth, isAdmin, orderSummary);
